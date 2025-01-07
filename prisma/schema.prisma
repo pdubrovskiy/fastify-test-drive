@@ -17,8 +17,8 @@ model User {
   id       Int       @id @default(autoincrement())
   email    String    @unique
   name     String?
-  password String
-  salt     String
+  password String    @db.VarChar(128)
+  salt     String    @db.VarChar(32)
   Product  Product[]
 }
 
