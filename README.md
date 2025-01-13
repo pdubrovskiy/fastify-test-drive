@@ -1,6 +1,6 @@
-# Fastify Test Drive 🚀
+# Fastify API Platform 🚀
 
-A modern TypeScript-based REST API built with Fastify framework and Prisma ORM.
+A modern, production-ready REST API platform built with Fastify framework, featuring TypeScript, Prisma ORM, JWT authentication, and Swagger documentation.
 
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=green&color=black)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=blue&color=white)](https://www.typescriptlang.org/)
@@ -41,8 +41,8 @@ A modern TypeScript-based REST API built with Fastify framework and Prisma ORM.
 
 1. Clone the repository:
 ```bash
-git clone https://github.com/pdubrovskiy/fastify-test-drive.git
-cd fastify-test-drive
+git clone https://github.com/pdubrovskiy/fastify-api-platform.git
+cd fastify-api-platform
 ```
 
 2. Install dependencies:
