@@ -17,7 +17,7 @@
     "ts-node-dev": "^2.0.0",
     "typescript": "^5.7.2"
   },
-  "name": "fastify-test-drive",
+  "name": "fastify-api-platform",
   "version": "1.0.0",
   "main": "index.js",
   "repository": "https://github.com/pdubrovskiy/fastify-test-drive.git",
