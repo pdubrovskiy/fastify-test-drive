@@ -3,8 +3,8 @@ import fastifyJwt from "@fastify/jwt";
 import { userRoutes } from "./modules/user/user.route";
 import { userSchemas } from "./modules/user/user.schema";
 
-const fastify = Fastify({ logger: true });
 const PORT = 3000;
+const fastify = Fastify({ logger: true });
 
 fastify.register(fastifyJwt, {
   secret: "nkgdfjltjl3l4n39gdj3emmgo49",
@@ -35,7 +35,7 @@ async function main(): Promise<void> {
   try {
     await fastify.listen({ port: PORT });
 
-    fastify.log.info(`Server works on ${PORT} port`);
+    fastify.log.info(`Server works on port: ${PORT}`);
   } catch (err) {
     fastify.log.error(err);
     process.exit(1);

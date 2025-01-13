@@ -1,7 +1,7 @@
 import { FastifyReply, FastifyRequest } from "fastify";
-import { createUser, findUserByEmail } from "./user.service";
-import { CreateUserInput, LoginInput } from "./user.schema";
 import { verifyPassword } from "../../utils/hash";
+import { CreateUserInput, LoginInput } from "./user.schema";
+import { createUser, findUserByEmail } from "./user.service";
 
 export async function registerUserHandler(
   request: FastifyRequest<{
@@ -21,7 +21,9 @@ export async function registerUserHandler(
 export async function loginHandler(
   request: FastifyRequest<{ Body: LoginInput }>,
   reply: FastifyReply
-) {
+): Promise<{
+  accessToken: string;
+}> {
   const { email, password } = request.body;
   const user = await findUserByEmail(email);
   if (!user) {
