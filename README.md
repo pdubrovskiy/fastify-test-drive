@@ -2,6 +2,11 @@
 
 A modern, production-ready REST API platform built with Fastify framework, featuring TypeScript, Prisma ORM, JWT authentication, and Swagger documentation.
 
+## 📝 Note
+In this repository, I am refreshing my knowledge and skills in working with Fastify due to my constant work with NestJS 😅. 
+<br>
+<br>
+
 [![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=node.js&logoColor=green&color=black)](https://nodejs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=blue&color=white)](https://www.typescriptlang.org/)
 [![Fastify](https://img.shields.io/badge/Fastify-000000?style=for-the-badge&logo=fastify&logoColor=white)](https://www.fastify.io/)

@@ -1,7 +1,8 @@
+import { User } from "@prisma/client";
 import { FastifyReply, FastifyRequest } from "fastify";
 import { verifyPassword } from "../../utils/hash";
 import { CreateUserInput, LoginInput } from "./user.schema";
-import { createUser, findUserByEmail } from "./user.service";
+import { createUser, findUserByEmail, findUsers } from "./user.service";
 
 export async function registerUserHandler(
   request: FastifyRequest<{
@@ -45,4 +46,10 @@ export async function loginHandler(
   }
 
   return { accessToken: reply.server.jwt.sign({ userData }) };
+}
+
+export async function getUsersHandler(): Promise<Array<Partial<User>>> {
+  const users = await findUsers();
+
+  return users;
 }
