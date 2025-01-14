@@ -6,6 +6,12 @@ import { userSchemas } from "./modules/user/user.schema";
 const PORT = 3000;
 const fastify = Fastify({ logger: true });
 
+declare module "fastify" {
+  interface FastifyInstance {
+    auth: any;
+  }
+}
+
 fastify.register(fastifyJwt, {
   secret: "nkgdfjltjl3l4n39gdj3emmgo49",
 });

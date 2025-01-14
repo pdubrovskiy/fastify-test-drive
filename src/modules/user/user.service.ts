@@ -27,3 +27,13 @@ export async function findUserByEmail(email: string): Promise<User | null> {
     },
   });
 }
+
+export async function findUsers(): Promise<Array<Partial<User>>> {
+  return prisma.user.findMany({
+    select: {
+      id: true,
+      name: true,
+      email: true,
+    },
+  });
+}
