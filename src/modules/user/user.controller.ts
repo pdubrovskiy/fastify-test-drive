@@ -45,7 +45,7 @@ export async function loginHandler(
     });
   }
 
-  return { accessToken: reply.server.jwt.sign({ userData }) };
+  return { accessToken: reply.server.jwt.sign({ ...userData }) };
 }
 
 export async function getUsersHandler(): Promise<Array<Partial<User>>> {
