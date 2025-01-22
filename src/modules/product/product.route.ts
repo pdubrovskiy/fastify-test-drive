@@ -1,4 +1,4 @@
-import { FastifyInstance } from "fastify";
+import { FastifyInstance, RouteHandlerMethod } from "fastify";
 import { createProductHandler, getProductsHandler } from "./product.controller";
 import { $ref } from "./product.schema";
 
@@ -14,7 +14,7 @@ async function productRoutes(fastify: FastifyInstance) {
         },
       },
     },
-    createProductHandler
+    createProductHandler as RouteHandlerMethod
   );
 
   fastify.get(

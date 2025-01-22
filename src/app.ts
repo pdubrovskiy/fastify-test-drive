@@ -27,22 +27,6 @@ const fastify = Fastify({
 
 const port = Number(process.env.PORT) || 3000;
 
-declare module "fastify" {
-  interface FastifyInstance {
-    auth: any;
-  }
-}
-
-declare module "@fastify/jwt" {
-  interface FastifyJWT {
-    user: {
-      id: number;
-      email: string;
-      name: string;
-    };
-  }
-}
-
 fastify.register(fastifyJwt, {
   secret: "nkgdfjltjl3l4n39gdj3emmgo49",
 });
