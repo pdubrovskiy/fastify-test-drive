@@ -131,3 +131,10 @@ dist
 
 # macOS system files
 .DS_Store
+
+# SSL certificates and keys
+https/*.key
+https/*.cert
+https/*.pem
+https/*.csr
+https/*.srl
