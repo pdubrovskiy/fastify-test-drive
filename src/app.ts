@@ -9,7 +9,14 @@ import { userRoutes } from "./modules/user/user.route";
 import { userSchemas } from "./modules/user/user.schema";
 
 const PORT = 3000;
-const fastify = Fastify({ logger: true });
+const fastify = Fastify({
+  logger: {
+    level: "info",
+    transport: {
+      target: "pino-pretty",
+    },
+  },
+});
 
 declare module "fastify" {
   interface FastifyInstance {
