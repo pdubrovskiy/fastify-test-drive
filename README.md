@@ -38,7 +38,7 @@ In this repository, I am refreshing my knowledge and skills in working with Fast
 
 ### Prerequisites
 
-- Node.js (v14 or higher)
+- Node.js (v20 or higher)
 - Yarn package manager
 - PostgreSQL database
 
