@@ -10,48 +10,46 @@ import { productSchemas } from "./modules/product/product.schema";
 import { userRoutes } from "./modules/user/user.route";
 import { userSchemas } from "./modules/user/user.schema";
 
-const fastify = Fastify({
-  http2: true,
-  https: {
-    allowHTTP1: true,
-    key: fs.readFileSync(path.join(__dirname, "..", "https", "fastify.key")),
-    cert: fs.readFileSync(path.join(__dirname, "..", "https", "fastify.cert")),
-  },
-  logger: {
-    level: "info",
-    transport: {
-      target: "pino-pretty",
+export function buildApp() {
+  const fastify = Fastify({
+    http2: true,
+    https: {
+      allowHTTP1: true,
+      key: fs.readFileSync(path.join(__dirname, "..", "https", "fastify.key")),
+      cert: fs.readFileSync(
+        path.join(__dirname, "..", "https", "fastify.cert")
+      ),
     },
-  },
-});
+    logger: {
+      level: "info",
+      transport: {
+        target: "pino-pretty",
+      },
+    },
+  });
 
-const port = Number(process.env.PORT) || 3000;
+  fastify.register(fastifyJwt, {
+    secret: process.env.JWT_SECRET || "",
+  });
 
-fastify.register(fastifyJwt, {
-  secret: "nkgdfjltjl3l4n39gdj3emmgo49",
-});
-
-fastify.decorate(
-  "auth",
-  async (request: FastifyRequest, reply: FastifyReply) => {
-    try {
-      await request.jwtVerify();
-    } catch (err) {
-      return reply.send(err);
+  fastify.decorate(
+    "auth",
+    async (request: FastifyRequest, reply: FastifyReply) => {
+      try {
+        await request.jwtVerify();
+      } catch (err) {
+        return reply.send(err);
+      }
     }
-  }
-);
+  );
 
-fastify.get("/healthcheck", async (req, res) => ({
-  status: "Ok",
-}));
-
-async function main(): Promise<void> {
+  // Register schemas
   for (const schema of [...userSchemas, ...productSchemas]) {
     fastify.addSchema(schema);
   }
 
-  await fastify.register(swagger, {
+  // Register Swagger
+  fastify.register(swagger, {
     openapi: {
       info: {
         title: "Test Drive API",
@@ -60,22 +58,13 @@ async function main(): Promise<void> {
       },
     },
   });
-
-  await fastify.register(swaggerUi, {
+  fastify.register(swaggerUi, {
     routePrefix: "/docs",
   });
 
+  // Register routes
   fastify.register(userRoutes, { prefix: "api/users" });
   fastify.register(productRoutes, { prefix: "api/products" });
 
-  try {
-    await fastify.listen({ port });
-
-    fastify.log.info(`Server works on port: ${port}`);
-  } catch (err) {
-    fastify.log.error(err);
-    process.exit(1);
-  }
+  return fastify;
 }
-
-main();
